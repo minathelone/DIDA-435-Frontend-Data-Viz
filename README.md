@@ -35,6 +35,7 @@ createWaterfallChart("#chart", data, {
   fontScale: 1.3,
 });
 
+- accepted csv structure = (sliceBy, x, y, description ="")
 - title of graph
 - titles of axis labels
 - color theme
