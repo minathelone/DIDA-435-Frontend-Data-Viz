@@ -19,3 +19,18 @@ Once you have your vector path ready, use the [SVG Path Editor](https://yqnn.git
 # Butterfly Chart 
 
 # Waterfall Plot
+createWaterfallChart("#chart", data, {
+  title: "Sales Waterfall",
+  axes: {
+    xLabel: "Stages",
+    yLabel: "Value",
+  },
+  colors: {
+    increase: "#4CAF50",
+    decrease: "#F44336",
+  },
+  layout: {
+    labelOffset: 1.2
+  },
+  fontScale: 1.3,
+});
