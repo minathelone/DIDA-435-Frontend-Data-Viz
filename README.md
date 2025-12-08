@@ -38,6 +38,8 @@ createWaterfallChart("#chart", data, {
   fontScale: 1.3,
 });
 
+Dependencies: three.js, orbit controls, papa parse...
+
 - accepted csv structure = (sliceBy, x, y, description ="")
 - title of graph
 - titles of axis labels
