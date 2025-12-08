@@ -4,7 +4,9 @@ This is the documentation for Mina Lone, Asia Qin, Maddie Knopf, and Kathryn Che
 # What Is This Library? 
 
 # Installation 
+Install via npm: 
 
+npm install funky-graphs
 # Radial Histogram 
 
 # Butterfly Chart 
