@@ -57,30 +57,27 @@ Adjusting the Code:
 3. Add the appropriate buttons to the HTML file
 
 
-
-
 # Waterfall Plot
-createWaterfallChart("#chart", data, {
-  title: "Sales Waterfall",
-  axes: {
-    xLabel: "Stages",
-    yLabel: "Value",
-  },
-  colors: {
-    increase: "#4CAF50",
-    decrease: "#F44336",
-  },
-  layout: {
-    labelOffset: 1.2
-  },
-  fontScale: 1.3,
-});
+```javascript
+createWaterfallPlot(csv_file, div_container, color_theme, x_axis_label, y_axis_label, label_scale);
+```
+## Parameters
+**csv_file**: The file path to a csv. The csv must have the following structure: slice, x, y
+The "slice" column should contain the variable that you want to organize the datasets by (ex: slice by company). 
+"x" and "y" are values that the function will use to "draw" the slices. An example valid csv would be as follows: 
+```
+slice,x,y  
+Apple,1,2.74,"Apple revenue in 2020 (in trillions USD)"  
+Apple,3,3.65,"Apple revenue in 2021 (in trillions USD)"  
+Microsoft,1,1.43,"Microsoft revenue in 2020 (in trillions USD)"  
+Microsoft,3,1.68,"Microsoft revenue in 2021 (in trillions USD)"   
+Google,1,1.82,"Google revenue in 2020 (in trillions USD)"  
+Google,3,2.57,"Google revenue in 2021 (in trillions USD)"  
+```
+**div_container**: The id of the html div container that you want to host your waterfall plot in.   
+**color_theme**: "dark" or "light"; toggles between a black or white background.   
+**x_axis_label**: The title for your x axis.  
+**y_axis_label**: The title for you y axis.   
+**label_scale**: Takes an integer or float to scale the size of the label size. The parameter multiplies the size of the default font (1).  
 
-Dependencies: three.js, orbit controls, papa parse...
-
-- accepted csv structure = (sliceBy, x, y, description ="")
-- title of graph
-- titles of axis labels
-- color theme
-- positioning for axis labels, tick marks, button (depending on scale of their data, they might need to manually reposition some stuff)
-- size for font (maybe a multiplier across all of the text labels so everything scales up or down together)
+## Example Use And Output
