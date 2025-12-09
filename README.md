@@ -59,7 +59,7 @@ Adjusting the Code:
 
 # Waterfall Plot
 ```javascript
-createWaterfallPlot(csv_file, div_container, color_theme, x_axis_label, y_axis_label, label_scale);
+createWaterfallPlot(csv_file, div_container, color_theme, title, x_axis_label, y_axis_label, label_scale);
 ```
 ## Parameters
 **csv_file**: The file path to a csv. The csv must have the following structure: slice, x, y
@@ -75,7 +75,8 @@ Google,1,1.82,"Google revenue in 2020 (in trillions USD)"
 Google,3,2.57,"Google revenue in 2021 (in trillions USD)"  
 ```
 **div_container**: The id of the html div container that you want to host your waterfall plot in.   
-**color_theme**: "dark" or "light"; toggles between a black or white background.   
+**color_theme**: "dark" or "light"; toggles between a black or white background.  
+**title**: The title for your visualization.
 **x_axis_label**: The title for your x axis.  
 **y_axis_label**: The title for you y axis.   
 **label_scale**: Takes an integer or float to scale the size of the label size. The parameter multiplies the size of the default font (1).  
