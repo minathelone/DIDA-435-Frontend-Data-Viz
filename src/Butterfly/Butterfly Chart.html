@@ -9,12 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --card-w:1400px;          /* allow the chart to span wider on large screens */
-    --bg-grad:#000000;      /* default to dark; JS flips for light mode */
+    --card-w:1400px;
+    --bg-grad:#000000;
     --text:#f1f5f9;
     --muted:#cbd5e1;
-    --panel:transparent;    /* chart sits directly on the page */
-    --panel-border:transparent; /* no visible frame in dark mode */
+    --panel:transparent;
+    --panel-border:transparent;
     --grid:#000000;
     --axis:#000000;
     --shadow-1:none;
@@ -112,7 +112,6 @@
   .grid line{ stroke:var(--grid); stroke-opacity:.35; stroke-width:0.6; }
   .grid .domain{ display:none; }
 
-  /* Tooltip */
   #tip{
     position:fixed; top:0; left:0; transform:translate(12px,10px);
     background:#fff; color:var(--text); padding:12px 14px; border-radius:12px; font-size:14px; line-height:1.5;
@@ -183,7 +182,6 @@
     font-weight:700; font-size:15px;
   }
 
-  /* Responsive */
   @media (max-width: 860px){
     h1{ font-size:26px }
     .control{ width:100%; }
@@ -249,7 +247,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script> <!-- calling createButterflyChart -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script type="module">
     import { createButterflyChart } from './index.js';
 
