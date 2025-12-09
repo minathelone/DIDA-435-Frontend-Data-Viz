@@ -1,6 +1,6 @@
 {
   "name": "funky-graphs",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A JavaScript library for creating non-standard or advanced data visualizations in the browser.",
   "type": "module",
   "main": "./dist/funky-graphs.umd.js",
