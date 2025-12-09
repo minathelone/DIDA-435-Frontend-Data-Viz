@@ -1,10 +1,7 @@
 {
   "name": "funky-graphs",
-<<<<<<< Updated upstream
-  "version": "1.0.3",
-=======
   "version": "1.0.6",
->>>>>>> Stashed changes
+
   "description": "A JavaScript library for creating non-standard or advanced data visualizations in the browser.",
   "type": "module",
   "main": "./dist/funky-graphs.umd.js",
