@@ -323,7 +323,7 @@ const { chart, toggleShape } = createPictorialGraph({
 (string) The name of the image you want it to be.  
 
 ### *value*: 
-(string) The height you want your image to be.  
+(int) The height you want your image to be.  
 
 ### *color*: 
 (string) The color you want your image to be.  
