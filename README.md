@@ -336,7 +336,7 @@ tick_scale);
 <img width="569" height="578" alt="Screenshot 2025-12-09 at 1 13 10 PM" src="https://github.com/user-attachments/assets/e53dae07-8e00-4c70-93e4-96483b4b51df" />
 
 ## Setup 
-You'll need to have set up a div to host the plot. This plot also requires that you have an html button, for which you can simply copy and paste this snippet into your file: 
+You'll need to have set up a div to host the plot. This plot also requires that you have an html button and a tooltip, for which you can simply copy and paste this snippet into your file: 
 ```html
 <button id="backButton" style="
           display: none;
@@ -355,7 +355,8 @@ You'll need to have set up a div to host the plot. This plot also requires that 
           transition: background-color 0.2s, transform 0.1s;
       ">
           Back to 3D View
-      </button>
+</button>
+<div id="chart-tooltip"></div>
 ```
 Note that this visualization does not support dynamic placement of the button, so you'll have to adjust the position manually. You can also adjust the style to your liking by manually editing the CSS. Note that the id of the button **must be** "backButton".
 
