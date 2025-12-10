@@ -38,6 +38,56 @@ createWaterfallPlot('./data.csv', 'chart-container', 'light', 'Time', 'Revenue')
 ```
 
 # Radial Histogram 
+```javascript
+  createRadicalHistogram(jsonFile,
+  svgId,
+  theme,
+  width,
+  height,
+  innerRadius,
+  categoryKey
+  );
+```
+<img width="646" height="651" alt="Screen Shot 2025-12-09 at 11 46 41 PM" src="https://github.com/user-attachments/assets/c18941c1-5cb2-45a1-852a-59616f17af4f" />
+
+## Setup
+```html
+<div id="chart-container">
+    <svg id="radial-histogram"></svg>
+</div>
+
+<div id="controls">
+    <button id="sortValue">Sort: Most → Least</button>
+    <button id="sortCategory">Sort: Category</button>
+    <button id="reset">Reset</button>
+</div>
+```
+## Parameters
+### **jsonFile**: 
+```
+[ {"title":"Inception","genre":"Sci-Fi","minutes_watched":540000,"unique_viewers":230000,"rating":8.8},
+  {"title":"Barbie","genre":"Comedy","minutes_watched":720000,"unique_viewers":310000,"rating":7.1},
+  {"title":"Oppenheimer","genre":"Drama","minutes_watched":690000,"unique_viewers":280000,"rating":8.6},
+  {"title":"Parasite","genre":"Thriller","minutes_watched":410000,"unique_viewers":200000,"rating":8.5},
+  {"title":"Get Out","genre":"Horror","minutes_watched":350000,"unique_viewers":150000,"rating":7.7}
+]
+```
+### *svgId*: 
+(string) The id of the html div container that you want to host your waterfall plot in.   
+### *theme*: 
+(string: "dark" or "light"); toggles between a black or white background.  
+### *width*: 
+(int) The title for your visualization.  
+### *height*: 
+(nt) To adjust the (x,y,z) positioning of the title in the full 3D view. The parameter increments default (x/y/z) position.
+### *innerRadius*: 
+(int) To adjust the (x,y,z) positioning of the title in the isolated slice view. The parameter adds to the default (x/y/z) position.
+### *categoryKey*: 
+(string) The title for your x axis.  
+
+## Example Use and Output
+
+
 
 # Butterfly Chart 
 ```javascript
@@ -51,6 +101,185 @@ createButterflyChart({
   initialMode
 });
 ```
+<img width="1170" height="695" alt="butterfly-main" src="https://github.com/user-attachments/assets/8b16c4c0-78dd-4088-8027-46d936aba91f" />
+
+
+---
+
+## Setup
+
+You'll need to have set up a div to host the plot. This plot also expects a status element and a sort button. You can copy and paste this snippet into your HTML file:
+
+```html
+<button id="sortBtn">
+  Sorted by Diff
+</button>
+
+<p id="statusMsg"></p>
+
+<div id="chart"></div>
+
+<div id="tip"></div>
+<div id="detailScreen"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script type="module" src="./new.js"></script>
+```
+
+Note that this visualization expects the ids to match the parameters you pass:
+
+- `containerSelector` should point to `#chart`.
+- `statusSelector` should point to `#statusMsg`.
+- `sortButtonSelector` should point to `#sortBtn`.
+
+You can change these ids as long as you also update the corresponding parameters in the function call.
+
+---
+
+## Parameters
+
+```javascript
+createButterflyChart({
+  containerSelector,
+  statusSelector,
+  sortButtonSelector,
+  labels,
+  dataSource,
+  chartTitle,
+  initialMode
+});
+```
+
+### *containerSelector*
+(string) CSS selector for the HTML div that will host the butterfly plot.
+
+Example: `'#chart'`.
+
+---
+
+### *statusSelector*
+(string or null) CSS selector for the element where the chart writes status messages, such as
+"Showing top 20 of 20 categories alphabetically by category."  
+
+Example: `'#statusMsg'`.
+
+---
+
+### *sortButtonSelector*
+(string or null) CSS selector for the HTML button that toggles the sort mode (A–Z vs by difference).  
+
+Example: `'#sortBtn'`.
+
+---
+
+### *labels*
+(object) Text labels for the left and right sides of the butterfly chart.
+
+Example:
+```javascript
+labels = {
+  left: 'Exports',
+  right: 'Imports'
+};
+```
+
+- `left`: Label shown above the left side of the chart.
+- `right`: Label shown above the right side of the chart.
+
+---
+
+### *dataSource*
+(object) Configuration for loading and mapping your data.
+
+```javascript
+dataSource = {
+  type: 'csv',
+  url: 'countries.csv',
+  categoryCol: 'country',
+  leftCol: 'exports',
+  rightCol: 'imports',
+  rightScale: 1
+};
+```
+
+- **type** (string)  
+  Data format. For this project, `'csv'`.
+
+- **url** (string)  
+  File path or name of the CSV relative to the HTML file.
+
+- **categoryCol** (string)  
+  Column name used for category labels (y‑axis). For example, `'country'`.
+
+- **leftCol** (string)  
+  Column name for numeric values plotted on the left side (e.g. `'exports'`).
+
+- **rightCol** (string)  
+  Column name for numeric values plotted on the right side (e.g. `'imports'`).
+
+- **rightScale** (float or int)  
+  Optional scale factor that multiplies the right‑side values after loading. Default is `1`.
+
+A valid CSV for this configuration looks like:
+
+```csv
+country,child_mort,exports,health,imports,income,inflation,life_expectation,total_fer,gdpp
+Afghanistan,90.2,10,7.58,44.9,1610,9.44,56.2,5.82,553
+Albania,16.6,28,6.55,48.6,9930,4.49,76.3,1.65,4090
+Algeria,27.3,38.4,4.17,31.4,12900,16.1,76.5,2.89,4460
+...
+```
+
+Here:
+
+- `categoryCol` → `country`  
+- `leftCol` → `exports`  
+- `rightCol` → `imports`
+
+---
+
+### *chartTitle*
+(string) The title shown at the top of the page and in the header.
+
+Example: `'Exports vs Imports by Country'`.
+
+---
+
+### *initialMode*
+(string: `'dark'` or `'light'`)  
+Controls the color theme of the chart.
+
+- `'dark'` → dark background, light text.  
+- `'light'` → light background, dark text.
+
+If omitted, the default is `'dark'`.
+
+---
+
+## Example Use And Output
+
+```javascript
+import { createButterflyChart } from './index.js';
+
+createButterflyChart({
+  containerSelector: '#chart',            // html div id for chart
+  statusSelector: '#statusMsg',           // id for status text
+  sortButtonSelector: '#sortBtn',         // id for sort button
+  labels: { left: 'Exports', right: 'Imports' }, // left and right axis labels
+  dataSource: {
+    type: 'csv',                          // data file type
+    url: 'countries.csv',                 // name of csv file
+    categoryCol: 'country',               // category name column
+    leftCol: 'exports',                   // left side values
+    rightCol: 'imports',                  // right side values
+    rightScale: 1                         // scale factor for right side
+  },
+  chartTitle: 'Exports vs Imports by Country', // chart title text
+  initialMode: 'dark'                     // color theme
+});
+```
+<img width="1066" height="409" alt="butterfly-detail" src="https://github.com/user-attachments/assets/1681c930-438f-4f43-9cfb-e8ede6fa6143" />
+
 
 # Pictorial Charts: Height Comparison
 The Pictorial Chart, specifically for comparing the height of different objects, uses vector images to visualize data.
@@ -62,24 +291,27 @@ Replacing Images:
 When opening up your SVG file, click inspect and copy the path. 
 Once you have your vector path ready, use the [SVG Path Editor](https://yqnn.github.io/svg-path-editor/) to crop and resize the image so that it fits the height of the object. [Tip: Make sure your image is at the center of the x-axis and almost touching the y-axis.]
 
-Adjusting the Code:
+Parameters:
 1. Replace the property names with your appropriate data information, including your SVG paths that you want to compare.
 ```javascript
-const activeShapes = {};
-const shapes = {
-  person: {
-    name: 'Human',
-    value: 5.7,
-    color: '#8a8affff',
-    paths: { definition: 'M28.64-6.248c-.352-3.984-3.56-7.656-7.632-8.032-2.2-.2-4.488-.232-6.816-.192C21.752-18.64 19.408-33.128 8.416-31.928c-9.776 1.064-10.448 13.608-3.52 17.464-2.392-.04-4.76-.016-7.016.192-4.072.376-7.28 4.048-7.632 8.032-.768 8.592.568 18.272 0 26.984.664 4.304 6.472 4.432 7.344.168l.016-23.008.312-.448 1.2-.024v64.064c0 .128.336 1.248.416 1.464.608 1.568 2.008 2.456 3.544 2.968h1.696c1.6-.56 2.904-1.304 3.56-2.944.088-.224.4-1.16.4-1.296v-37.928c.16-.2.432-.304.712-.32.28.008.544.112.712.32v37.928c0 .144.312 1.072.4 1.296.656 1.64 1.968 2.384 3.56 2.944h1.696c1.536-.512 2.936-1.4 3.544-2.968.088-.216.416-1.344.416-1.464V-2.576l1.2.024.312.448.016 23.008c.872 4.264 6.68 4.128 7.344-.168-.568-8.704.76-18.392 0-26.984Z', max: 5.7 }
-  },
+const myChart = createPictorialChart({
+    containerId: ' ',
+    chartTitle: ' ',
+    yAxisFormat: '{value} ',
+    xAxisCategory: ' ',
+    shapes: {property1: {
+            name: ' ',
+            value: [],
+            color: ' ',
+            paths: {definition: '', max: []}},
 
-  animal1: {
-    name: 'Cat (Animal)',
-    value: 1.0,
-    color: '#8bff8bff',
-    paths: { definition: 'M41.4 51.8c0 0 0 .6-.3.8-1.3 1.7-4.9 1.4-6.8 1s-1.3-.6-1.7-.6-1 .5-1.5.6c-2.3.4-6.1.7-7.2-1.9-4 .5-8.2.4-12.1-.8-13.5-4.1-11.9-18.7-8.5-29.5s5.5-12.1 4.2-17-4.5-3.8-2.7-7.1 6.6-.3 8 2.2c7.4 13-11.5 30.2-1 42.4s3 3 4.2 2c-2.5-5.5-5.7-13.3-2.6-19.1s2.9-3.1 4-4.9c.3-8.9 1.5-17.3 3.2-26s2.5-8.6 2-11.2-2.1-3.8-2.7-5.7c-.9-2.7 0-5.1 0-7.9s-.6-3.6-.7-5.3-.2-6.9 1.1-7.3c2.4-.8 5.3 3.9 6.8 5.1s2.1.7 4.2.6 3.7.4 5 .4 3.8-3.5 5.3-4.7 2.7-2 3.6-1.2c2 1.7.2 10.3.1 12.8s.6 3.7.5 5.5c-.3 2.7-2.5 5.6-3 8.3s1.2 7.2 1.7 10c1.3 6.5 2.4 13 2.9 19.6s0 4.9.3 6.7 2.4 2.7 3.2 3.7c4.4 5.8 1.1 14.3-1.6 20.2s-1.9 3.1-2.2 4', max: 1.0 }
-  }};
+            property2: {
+                name: ' ',
+                value: [],
+                color: ' ',
+                paths: {
+                definition: ' ', 
+                max: []}}}
 ```
 2. Add the appropriate buttons to the HTML file in the appropriate div
 ```html

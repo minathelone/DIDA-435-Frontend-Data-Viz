@@ -84,7 +84,7 @@ function showTooltip(sliceIndex, worldPosition, points = null) {
     console.log(`Tooltip: ${sliceName}, Points:`, displayPoints);  
   }
   
-  // Convert 3D world position to 2D screen position
+  // convert 3d world to 2d screen pos
   const vector = worldPosition.clone();
   vector.project(camera);
   
@@ -94,13 +94,13 @@ function showTooltip(sliceIndex, worldPosition, points = null) {
   vector.x = (vector.x * widthHalf) + widthHalf;
   vector.y = -(vector.y * heightHalf) + heightHalf;
   
-  // Build tooltip content
+  // tootltip content
   let tooltipHTML = `<div class="tooltip-title">${sliceName}</div>`;
   
   if (points && points.length > 0) {
     tooltipHTML += '<div class="tooltip-points">';
-    // Show first few points
-    const displayPoints = points.slice(0, 10); // Limit to 10 points
+
+    const displayPoints = points.slice(0, 10); 
     displayPoints.forEach(point => {
       tooltipHTML += `<div class="tooltip-point">(${point.x.toFixed(2)}, ${point.y.toFixed(2)})</div>`;
     });
@@ -124,8 +124,8 @@ function hideTooltip() {
   }
 }
 
+
 function parseWaterfallCSV(csvText) {
-  // Remove BOM if present
   const result = Papa.parse(csvText, {
     header: true,
     dynamicTyping: true, 
@@ -135,10 +135,6 @@ function parseWaterfallCSV(csvText) {
   const data = result.data;
 
   const requiredHeaders = ["slice", "x", "y"];
-  // const headers = result.meta.fields;
-  // if (!requiredHeaders.every(h => headers.includes(h))) {
-  //   throw new Error(`CSV must contain headers: ${requiredHeaders.join(", ")}`);
-  // }
   const headers = result.meta.fields.map(h => h.trim());
     if (!requiredHeaders.every(h => headers.includes(h))) {
   throw new Error(`CSV must contain headers: ${requiredHeaders.join(", ")}`);
@@ -170,9 +166,9 @@ function array_average(data){
 function create_shapes(maxX, maxY, array, colors, sliceSpacing) {
   const sliceMeshesLocal = [];
   
-  // Define the actual visible range for data
-  const paddingX = 2; // Padding on x-axis
-  const paddingY = 2; // Padding on y-axis
+
+  const paddingX = 2; 
+  const paddingY = 2; 
   const sideX = maxX + paddingX;
   const sideY = maxY + paddingY;
   
@@ -181,18 +177,16 @@ function create_shapes(maxX, maxY, array, colors, sliceSpacing) {
     
     const shape = new THREE.Shape();
     
-    // Start at bottom-left of shape
+    // start at bottom-left of shape
     shape.moveTo(0, 0);
     
-    // Draw the curve
+    // drawing
     for (let j = 0; j < list.length; j++) {
-      // Scale x to use full available width
       const xScaled = (list[j].x / maxX) * sideX;
-      // Use actual y value (no scaling needed as we're using actual coordinates)
       shape.lineTo(xScaled, list[j].y);
     }
     
-    // Close the shape back to bottom-right
+    // close the shape back to bottom-right
     shape.lineTo((list[list.length - 1].x / maxX) * sideX, 0);
     shape.closePath();
 
@@ -264,7 +258,6 @@ function generate_grid(xMax, yMax, array_length, divisions, sliceSpacing) {
 function place_ticks(maxXY, divisions, gridSizeXY, material_text, axis, array, sliceSpacing, group, zRotation, offset = 0, zOffset = null) {
   if (!globalFont) return;
   
-  // Calculate zOffset if not provided
   if (zOffset === null) {
     zOffset = sliceSpacing * array.length + 1;
   }
@@ -289,7 +282,7 @@ function place_ticks(maxXY, divisions, gridSizeXY, material_text, axis, array, s
     const textMesh = new THREE.Mesh(labelGeo, material_text);
     textMesh.raycast = () => {};
 
-    const Pos = Ticks[i]; // This is the actual y-value
+    const Pos = Ticks[i]; 
 
     if (axis === "x") {
       const scaledPos = (Pos / maxXY) * gridSizeXY;
@@ -304,6 +297,7 @@ function place_ticks(maxXY, divisions, gridSizeXY, material_text, axis, array, s
   }
 }
 
+// where the event listeners are set up 
 function setupThree(container, theme) {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(container.clientWidth, container.clientHeight);
@@ -351,20 +345,20 @@ function setupThree(container, theme) {
       focusOnSlice(intersects[0].object, theme);
     }
   });
-  // Initialize tooltip
+
   initTooltip();
   
-  // Add pointer move for tooltip positioning
+  // pointer move for tooltip positioning
   container.addEventListener('pointermove', (event) => {
     if (tooltipVisible && tooltipElement) {
-      // Update tooltip position based on mouse
+      // update tooltip position based on mouse
       tooltipElement.style.left = `${event.clientX + 15}px`;
       tooltipElement.style.top = `${event.clientY - 15}px`;
     }
     
   });
   
-  // Hide tooltip when mouse leaves container
+  // hide tooltip when mouse leaves container
   container.addEventListener('pointerleave', () => {
     hideTooltip();
   });
@@ -375,6 +369,7 @@ function setupThree(container, theme) {
   });
 }
 
+// handling hover highlighting and tooltips
 function animate() {
   requestAnimationFrame(animate);
 
@@ -386,7 +381,7 @@ function animate() {
       const hit = intersects[0].object;
       const hitIndex = sliceMeshes.indexOf(hit);
       
-      // Handle hover highlighting (your existing code)
+      // hover highlighting
       if (currentlyHovered !== hit) {
         if (currentlyHovered && currentlyHovered.userData.originalColor) {
           currentlyHovered.material.color.copy(currentlyHovered.userData.originalColor);
@@ -395,7 +390,7 @@ function animate() {
         if (!hit.userData.originalColor) hit.userData.originalColor = hit.material.color.clone();
         hit.material.color.offsetHSL(0, 0, 0.15);
         
-        // Show tooltip with data
+        // tooltip
         if (hitIndex !== -1 && data[hitIndex]) {
           const worldPosition = intersects[0].point;
           showTooltip(hitIndex, worldPosition, data[hitIndex]);
@@ -420,7 +415,7 @@ function focusOnSlice(mesh, color_theme) {
 
   if (labels) labels.visible = false;
   
-  // Remove any existing label and tick groups
+  // remove existing ticks and labels
   if (labelGroup) {
     scene.remove(labelGroup);
     labelGroup = null;
@@ -430,35 +425,34 @@ function focusOnSlice(mesh, color_theme) {
     tickGroup = null;
   }
 
-  // Get the slice's bounding box
+// calculating cam positioning
   const boundingBox = new THREE.Box3().setFromObject(mesh);
   const center = new THREE.Vector3();
   boundingBox.getCenter(center);
   const size = boundingBox.getSize(new THREE.Vector3());
   
-  // Calculate the maximum dimension for camera distance
+
   const maxDim = Math.max(size.x, size.y, size.z);
   const distance = maxDim * 3;
   
-  // Calculate target (center of the slice)
+
   const target = new THREE.Vector3(
     center.x,
     center.y,
     mesh.position.z
   );
   
-  // Calculate camera position
   const cameraPos = new THREE.Vector3(
     center.x,
     center.y,
     mesh.position.z + distance
   );
   
-  // Store current position and target
+  // storre current pos
   const currentPos = camera.position.clone();
   const currentTarget = controls.target.clone();
   
-  // Animate to new position
+  // animate to new pos
   animateCamera(
     currentPos,
     cameraPos,
@@ -466,7 +460,6 @@ function focusOnSlice(mesh, color_theme) {
     target
   );
   
-  // Create new group for isolated labels
   isolabels = new THREE.Group();
   scene.add(isolabels);
 
@@ -526,13 +519,11 @@ function focusOnSlice(mesh, color_theme) {
 function restore3D() {
   allowRaycast = true;
   
-  // Store current position and target BEFORE changing anything
   const currentPos = camera.position.clone();
   const currentTarget = controls.target.clone();
   
   sliceMeshes.forEach(m => {
     m.visible = true;
-    // Reset Y position if it was modified during isolation
     m.position.y = 0;
   });
   
@@ -540,14 +531,10 @@ function restore3D() {
   if (labels) labels.visible = true;
   if (isolabels) isolabels.visible = false;
 
-  // if (theme==="light"){
-  //   scene.background = new THREE.Color(0x000000);}
-  //   else{
-  //     scene.background = new THREE.Color(0xffffff);}
   
   document.getElementById("backButton").style.display = "none";
   
-  // Animate FROM current position TO home position
+// animate from current to home 
   animateCamera(
     currentPos,
     homeCamPos.clone(),
@@ -555,7 +542,6 @@ function restore3D() {
     homeCamTarget.clone()
   );
   
-  // Re-enable controls after animation completes
   setTimeout(() => {
     controls.enabled = false;
   }, 1200);
