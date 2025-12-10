@@ -27,7 +27,7 @@ body{
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background: rgb(113, 113, 255);
+  background: rgb(62, 62, 205);
   color: white;
   cursor: pointer;
   font-size: 20px;
@@ -37,11 +37,13 @@ body{
 }
 
 #options-wrapper button.active {
-  background: #2c5fa8;
+  background: #311a86;
 }
 
 
 .highcharts-background {
     transition: all 250ms;
 }
+
+
 
