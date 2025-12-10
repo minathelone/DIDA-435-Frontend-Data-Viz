@@ -248,25 +248,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script type="module">
-    import { createButterflyChart } from './index.js';
-
-    createButterflyChart({
-      containerSelector: '#chart',
-      statusSelector: '#statusMsg',
-      sortButtonSelector: '#sortBtn',
-      labels: { left: 'Exports', right: 'Imports' },
-      dataSource: {
-        type: 'csv',
-        url: 'countries.csv',
-        categoryCol: 'country',
-        leftCol: 'exports',
-        rightCol: 'imports',
-        rightScale: 1
-      },
-      chartTitle: 'Exports vs Imports by Country',
-      initialMode: 'dark'
-    });
-  </script>
+  <script type="module" src="./new.js"></script>
 </body>
 </html>
