@@ -1,3 +1,4 @@
+
 export function createPictorialGraph({
   containerId = 'container',
   title = 'Pictorial Chart',
@@ -68,7 +69,7 @@ export function createPictorialGraph({
     });
   }
 
-
+  // Auto-bind color mode toggles
   if (colorModeSelector) {
     document.querySelectorAll(colorModeSelector).forEach(input => {
       input.addEventListener('click', e => {
