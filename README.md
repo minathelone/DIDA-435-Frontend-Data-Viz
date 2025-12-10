@@ -259,7 +259,7 @@ If omitted, the default is `'dark'`.
 ## Example Use And Output
 
 ```javascript
-import { createButterflyChart } from './index.js';
+import { createButterflyChart } from 'funky-graphs';
 
 createButterflyChart({
   containerSelector: '#chart',            // html div id for chart
