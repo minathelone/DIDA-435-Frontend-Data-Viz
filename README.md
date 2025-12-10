@@ -51,7 +51,6 @@ createButterflyChart({
   initialMode
 });
 ```
-![Butterfly chart – main view](./butterfly-main.png)
 
 # Pictorial Charts: Height Comparison
 The Pictorial Chart, specifically for comparing the height of different objects, uses vector images to visualize data.
