@@ -40,6 +40,19 @@ createWaterfallPlot('./data.csv', 'chart-container', 'light', 'Time', 'Revenue')
 # Radial Histogram 
 
 # Butterfly Chart 
+```javascript
+createButterflyChart({
+  containerSelector,
+  statusSelector,
+  sortButtonSelector,
+  labels,
+  dataSource,
+  chartTitle,
+  initialMode
+});
+```
+
+![Butterfly chart – main view](./butterfly-main.png)
 
 # Pictorial Charts: Height Comparison
 The Pictorial Chart, specifically for comparing the height of different objects, uses vector images to visualize data.
