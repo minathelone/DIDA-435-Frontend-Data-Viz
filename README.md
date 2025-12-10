@@ -46,9 +46,9 @@ createRadicalHistogram('/src/data.json',
     "genre"
     );
 ```
-<img width="1292" height="1302" alt="image" src="https://github.com/user-attachments/assets/60f8a297-d534-4cca-8f78-72763e76e183" />
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/60f8a297-d534-4cca-8f78-72763e76e183" />
 
-### **Butterly Chart**  
+### **Butterfly Chart**  
 Check out the [documentation](Documentation/ButterflyChart.md)
 ```javascript
 import { createButterflyChart } from 'funky-graphs';
