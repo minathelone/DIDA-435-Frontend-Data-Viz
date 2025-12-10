@@ -1,25 +1,16 @@
 export function createButterflyChart({
-  containerSelector = '#chart',
-  statusSelector = '#statusMsg',
-  sortButtonSelector = '#sortBtn',
+  containerSelector,
+  statusSelector,
+  sortButtonSelector,
   labels: labelsParam,
   dataSource,
   chartTitle: chartTitleParam,
   initialMode: initialModeParam
 } = {}) {
-  const labels = labelsParam || { left: 'Exports', right: 'Imports' };
-
-  const DATA_SOURCE = dataSource || {
-    type: 'csv',
-    url: 'countries.csv',
-    categoryCol: 'country',
-    leftCol: 'exports',
-    rightCol: 'imports',
-    rightScale: 1
-  };
-
-  const chartTitle = chartTitleParam || 'Exports vs Imports by Country';
-  const initialMode = (initialModeParam || 'dark');
+  const labels = labelsParam;
+  const DATA_SOURCE = dataSource;
+  const chartTitle = chartTitleParam;
+  const initialMode = initialModeParam;
 
   try {
     const headerTitle = document.querySelector('header h1');
