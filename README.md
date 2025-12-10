@@ -290,14 +290,6 @@ The attached code provides a sample of how to edit the axes units, replace SVG p
 Replacing Images:
 When opening up your SVG file, click inspect and copy the path. 
 Once you have your vector path ready, use the [SVG Path Editor](https://yqnn.github.io/svg-path-editor/) to crop and resize the image so that it fits the height of the object. [Tip: Make sure your image is at the center of the x-axis and almost touching the y-axis.]
-
-
- Setting up:
-The attached code provides a sample of how to edit the axes units, replace SVG paths, and add new objects to the graph.
-
-Replacing Images:
-When opening up your SVG file, click inspect and copy the path. 
-Once you have your vector path ready, use the [SVG Path Editor](https://yqnn.github.io/svg-path-editor/) to crop and resize the image so that it fits the height of the object. [Tip: Make sure your image is at the center of the x-axis and almost touching the y-axis.]
 ```javascript
 const shapes = {
    property1: {
