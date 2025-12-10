@@ -34,7 +34,7 @@ createWaterfallPlot('./data.csv', 'chart-container', 'light', 'Time', 'Revenue')
 ```
 
 ## Example Usage
-**Radial Histogram**
+**Radial Histogram** Check out the [documentation](docs/RadialHistogram.md)
 ```javascript
 createRadicalHistogram('/src/data.json',
     "radial-histogram",
@@ -47,7 +47,7 @@ createRadicalHistogram('/src/data.json',
 ```
 <img width="1292" height="1302" alt="image" src="https://github.com/user-attachments/assets/60f8a297-d534-4cca-8f78-72763e76e183" />
 
-**Butterly Chart**
+**Butterly Chart** Check out the [documentation](docs/ButterflyChart.md)
 ```javascript
 import { createButterflyChart } from 'funky-graphs';
 
@@ -70,7 +70,7 @@ createButterflyChart({
 ```
 <img width="2132" height="818" alt="image" src="https://github.com/user-attachments/assets/7a20d4bf-5474-4bf5-b0d3-5ba986d703d7" />
 
-**Pictorial Graph**
+**Pictorial Graph** Check out the [documentation](docs/PictorialGraph.md)
 ```javascript
 import { createPictorialGraph } from './index.js';
 
@@ -111,7 +111,7 @@ createPictorialGraph({
 ```
 <img width="1765" height="533" alt="image" src="https://github.com/user-attachments/assets/1575bf89-b904-46da-b256-a9da20ac3407" />
 
-**Waterfall Plot**
+**Waterfall Plot** Check out the [documentation](docs/WaterfallPlot.md)
 ```javascript
 import { createWaterfallPlot } from 'funky-graphs';
 
