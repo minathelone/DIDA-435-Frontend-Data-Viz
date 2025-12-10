@@ -222,4 +222,7 @@ export const sampleShapes = {
     color: '',
     paths: { definition: 'M...', max: [] }
   }
+
 };
+
+export { createPictorialChart, sampleShapes } from './index.js';
